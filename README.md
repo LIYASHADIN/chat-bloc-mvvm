@@ -35,5 +35,7 @@ APK will be generated at:
 
 build/app/outputs/flutter-apk/app-release.apk
 
+
 👨‍💻 About
+
 This project demonstrates a clean and scalable Flutter chat app using modern architecture principles.
