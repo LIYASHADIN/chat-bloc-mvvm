@@ -8,7 +8,6 @@ import '../../blocs/chat_list/chat_list_bloc.dart';
 import '../../blocs/chat_list/chat_list_event.dart';
 import '../../blocs/chat_list/chat_list_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../shared/constants.dart';
 
 class ChatListPage extends StatelessWidget {
   const ChatListPage({super.key});
@@ -20,9 +19,7 @@ class ChatListPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => ChatListBloc(repo)..add(LoadChats('')),
       child: Container(
-        decoration: const BoxDecoration(
-          gradient: AppTheme.appGradient,
-        ),
+        decoration: const BoxDecoration(gradient: AppTheme.appGradient),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
@@ -52,17 +49,18 @@ class ChatListPage extends StatelessWidget {
                   } else if (state is ChatListLoaded) {
                     if (state.chats.isEmpty) {
                       return const Center(
-                          child: Text('No chats found',
-                              style: TextStyle(color: Colors.black)));
+                        child: Text(
+                          'No chats found',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      );
                     }
 
                     return ListView.separated(
                       padding: const EdgeInsets.all(12),
                       itemCount: state.chats.length,
-                      separatorBuilder: (_, __) => const Divider(
-                        color: Colors.black12,
-                        height: 1,
-                      ),
+                      separatorBuilder: (_, __) =>
+                          const Divider(color: Colors.black12, height: 1),
                       itemBuilder: (context, i) {
                         final c = state.chats[i];
                         final participant = c.participants.firstWhere(
@@ -74,14 +72,19 @@ class ChatListPage extends StatelessWidget {
                           onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) =>
-                                  ChatPage(chatId: c.id, currentUserId: userId,chatName: participant.name,),
+                              builder: (_) => ChatPage(
+                                chatId: c.id,
+                                currentUserId: userId,
+                                chatName: participant.name,
+                              ),
                             ),
                           ),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
-                                vertical: 16, horizontal: 12),
-                            color: Colors.transparent, 
+                              vertical: 16,
+                              horizontal: 12,
+                            ),
+                            color: Colors.transparent,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -93,19 +96,26 @@ class ChatListPage extends StatelessWidget {
                                           ? c.id
                                           : participant.name,
                                       style: const TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      c.lastMessage?.content ?? 'No messages yet',
+                                      c.lastMessage?.content ??
+                                          'No messages yet',
                                       style: const TextStyle(
-                                          color: Colors.black, fontSize: 14),
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                      ),
                                     ),
                                   ],
                                 ),
-                                const Icon(Icons.chevron_right, color: Colors.black),
+                                const Icon(
+                                  Icons.chevron_right,
+                                  color: Colors.black,
+                                ),
                               ],
                             ),
                           ),
@@ -114,10 +124,11 @@ class ChatListPage extends StatelessWidget {
                     );
                   } else if (state is ChatListError) {
                     return Center(
-                        child: Text(
-                      'Error: ${state.message}',
-                      style: const TextStyle(color: Colors.white),
-                    ));
+                      child: Text(
+                        'Error: ${state.message}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    );
                   }
 
                   return const SizedBox.shrink();

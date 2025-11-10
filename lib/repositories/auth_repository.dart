@@ -13,24 +13,19 @@ class AuthRepository {
   required String password,
   required String role,
 }) async {
-
       final body = {'email': email, 'password': password, 'role': role};
-      print("url $body");
       try {
          final response = await apiService.post(
             ApiConstants.login, body
           );
-
           if (response.statusCode == 200) {
             return LoginResponse.fromJson(response.data);
           } else {
             throw Exception("Login failed");
           }
       } catch (e) {
-        print("error  url$e");
         throw Exception('Login failed: $e');
       }
-     
     }
 
   Future<void> logout() async {
