@@ -1,17 +1,24 @@
-# chat_mvvm_bloc
+Chat MVVM BLoC
+A real-time chat application built with Flutter, using the MVVM + BLoC pattern and Socket.IO for live messaging.
 
-A new Flutter project.
+✨ Features
+Real-time messaging
+Clean MVVM architecture
+Socket.IO integration
+WhatsApp-style UI
+Auto-scroll to latest message
 
-## Getting Started
+🛠️ Setup
+git clone https://github.com/yourusername/chat-bloc-mvvm.git
+cd chat-bloc-mvvm
+flutter pub get
+flutter run
 
-This project is a starting point for a Flutter application.
+📦 Build Release APK
+flutter build apk --release
 
-A few resources to get you started if this is your first Flutter project:
+APK will be generated at:
+build/app/outputs/flutter-apk/app-release.apk
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# chat-bloc-mvvm
+👨‍💻 About
+This project demonstrates a clean and scalable Flutter chat app using modern architecture principles.
